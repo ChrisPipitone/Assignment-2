@@ -157,7 +157,7 @@ function myReduce(myCallBack, arr, initial)
     return curr;
 }
 
-let myCallBack6 = (previousValue, currentValue) => previousValue + currentValue;
+let myCallBack6 = (previousValue, currentValue) => previousValue + currentValue; //driver function
 console.log( "======== myReduce ========");
 console.log( myReduce(myCallBack6, arr, 5) );
 
@@ -211,6 +211,7 @@ function myPush(arr, element)
     arr[i] = element;
 
     return arr.length;
+    //suprised this actually works idk why thats so 'simple' expected more complicated
 }
 console.log( "======== myPush ========");
 console.log("arr length:: " + arr.length);
@@ -218,6 +219,66 @@ console.log(arr);
 console.log( "arr length:: " + myPush(arr, 300) );
 console.log(arr);
 
+
 // === LastIndexOf ===
+function myUnshift(arr, target)
+{
+    if(!Array.isArray(arr))
+    throw new TypeError( arr + 'is not an array');
+
+    let latest = -1; //init to -1 if not in remains unchanged
+    for( let i = 0; i < arr.length; i++)
+    {  
+        //returns the last index of target if it is an element of the array returns -1 if not in the array
+        if(arr[i] === target)
+            latest = i;
+    }
+    return latest;
+}
+
+console.log( "======== myUnshift ========");
+console.log(arr);
+myPush(arr, 43);
+myPush(arr, 2);
+myPush(arr, 100);
+console.log("pushed more values");
+let val = 2
+console.log( "last index of " + val + " is:: " + myUnshift(arr, val) );
+console.log(arr);
+
+
 // === ObjectKeys ===
+function grabKeys(obj)
+{
+    let tempArr = new Array();
+    for (const [key] of Object.entries(obj)) 
+    {
+        myPush(tempArr,key);
+    }
+    return tempArr;
+}
+
+let myObj  = {
+    a : 1, 
+    b : 2,
+    c : 3
+};
+
+console.log( "======== grabKeys ========");
+console.log(myObj);
+console.log(grabKeys(myObj));
+
 // === ObjectValues ===
+function grabValues(obj)
+{
+    let tempArr = new Array();
+    for (const [key, value] of Object.entries(obj)) 
+    {
+        myPush(tempArr,value);
+    }
+    return tempArr;
+}
+
+console.log( "======== grabValues ========");
+console.log(myObj);
+console.log(grabValues(myObj));
